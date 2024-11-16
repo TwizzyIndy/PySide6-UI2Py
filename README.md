@@ -20,4 +20,8 @@ Users appreciate release notes as you update your extension.
 
 - Initial release
 
+### 0.0.2
+
+- Added support for opening .UI files in Qt Designer
+
 ---
