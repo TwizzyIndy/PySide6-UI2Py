@@ -53,10 +53,6 @@ export function activate(context: vscode.ExtensionContext) {
 		const pythonPath = environmentPath.path;
 
 		const pyside6DesignerPath = path.join(path.dirname(pythonPath), 'pyside6-designer');
-		
-		// set PYSIDE_DESIGNER_PLUGINS environment variable as current directory
-		// https://stackoverflow.com/questions/68528717/environment-variable-pyside-designer-plugins-is-not-set-bailing-out
-		process.env.PYSIDE_DESIGNER_PLUGINS = '.';
 
 		const command = `${pyside6DesignerPath} ${existingFilePath}`;
 
