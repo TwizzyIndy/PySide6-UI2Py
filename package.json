@@ -2,7 +2,7 @@
   "name": "pyside6-ui2py",
   "displayName": "PySide6 UI2Py",
   "description": "The extension for compiling PySide6 UI files",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "publisher": "AungKhantM",
   "license": "MIT",
   "icon": "images/icon.png",
