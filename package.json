@@ -30,12 +30,21 @@
       {
         "command": "extension.runCommand",
         "title": "Compile UI2Py"
+      },
+      {
+        "command": "extension.openInQtDesigner",
+        "title": "Open in Qt Designer"
       }
     ],
     "menus": {
       "explorer/context": [
         {
           "command": "extension.runCommand",
+          "when": "resourceExtname == .ui",
+          "group": "navigation"
+        },
+        {
+          "command": "extension.openInQtDesigner",
           "when": "resourceExtname == .ui",
           "group": "navigation"
         }

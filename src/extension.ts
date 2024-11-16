@@ -39,7 +39,37 @@ export function activate(context: vscode.ExtensionContext) {
 		});
 	  });
 
+
+	let openInQtDesigner = vscode.commands.registerCommand('extension.openInQtDesigner', async (uri: vscode.Uri) => {
+		
+		// Load the Python extension API
+		const pythonApi: PythonExtension = await PythonExtension.api();
+
+		const environmentPath = pythonApi.environments.getActiveEnvironmentPath();
+
+		// path of the file
+		const existingFilePath = uri.fsPath;
+
+		const pythonPath = environmentPath.path;
+
+		const pyside6DesignerPath = path.join(path.dirname(pythonPath), 'pyside6-designer');
+		
+		// set PYSIDE_DESIGNER_PLUGINS environment variable as current directory
+		// https://stackoverflow.com/questions/68528717/environment-variable-pyside-designer-plugins-is-not-set-bailing-out
+		process.env.PYSIDE_DESIGNER_PLUGINS = '.';
+
+		const command = `${pyside6DesignerPath} ${existingFilePath}`;
+
+		exec(command, (error, stdout, stderr) => {
+		  if (error) {
+			vscode.window.showErrorMessage(`Error: ${stderr}`);
+			return;
+		  }
+		});
+	  });
+
 	context.subscriptions.push(disposable);
+	context.subscriptions.push(openInQtDesigner);
 }
 
 export function deactivate() {}
