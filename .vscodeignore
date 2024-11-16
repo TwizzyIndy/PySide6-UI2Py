@@ -475,3 +475,5 @@ clean.js
 tsconfig.json
 
 images/*.gif
+
+!node_modules/@vscode/python-extension
