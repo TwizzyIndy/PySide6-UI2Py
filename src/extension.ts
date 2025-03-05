@@ -17,8 +17,8 @@ export function activate(context: vscode.ExtensionContext) {
 		// path of the file
 		const oldFilePath = uri.fsPath;
 
-		const folderPath = oldFilePath.split('/').slice(0, -1).join('/');
-		const fileName = oldFilePath.split('/').pop();
+		const folderPath = oldFilePath.split(path.sep).slice(0, -1).join(path.sep);
+		const fileName = oldFilePath.split(path.sep).pop();
 
 		const fileNameWithoutExtension = fileName?.split('.')[0];
 
@@ -26,7 +26,12 @@ export function activate(context: vscode.ExtensionContext) {
 
 		const pythonPath = environmentPath.path;
 
-		const pyside6UicPath = path.join(path.dirname(pythonPath), 'pyside6-uic');
+		var pyside6UicPath = path.join(path.dirname(pythonPath), 'pyside6-uic');
+
+		// For the Windows environment, need to add .exe to the new file path
+		if (process.platform === 'win32') {
+			pyside6UicPath += '.exe';
+		}
 
 		const command = `${pyside6UicPath} ${oldFilePath} -o ${newFilePath}`;
 
