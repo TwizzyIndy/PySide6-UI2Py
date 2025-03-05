@@ -57,7 +57,11 @@ export function activate(context: vscode.ExtensionContext) {
 
 		const pythonPath = environmentPath.path;
 
-		const pyside6DesignerPath = path.join(path.dirname(pythonPath), 'pyside6-designer');
+		var pyside6DesignerPath = path.join(path.dirname(pythonPath), 'pyside6-designer');
+
+		if (process.platform === 'win32') {
+			pyside6DesignerPath += '.exe';
+		}
 
 		const command = `${pyside6DesignerPath} ${existingFilePath}`;
 
