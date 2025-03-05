@@ -28,7 +28,7 @@ export function activate(context: vscode.ExtensionContext) {
 
 		var pyside6UicPath = path.join(path.dirname(pythonPath), 'pyside6-uic');
 
-		// For the Windows environment, need to add .exe to the new file path
+		// For the Windows environment, need to add .exe to the uic path
 		if (process.platform === 'win32') {
 			pyside6UicPath += '.exe';
 		}
